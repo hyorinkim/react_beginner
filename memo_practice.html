@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function SaveBtn(){
+        return <button style={{
+             backgroundColor:"tomato",
+             color:'white',
+             padding:"10px 20px",
+             border: 0,
+             borderRadius: 10,
+        }
+        }>Save Changes</button>
+    }
+    function ConfirmBtn(){
+        return <button style={{
+             backgroundColor:"tomato",
+             color:'white',
+             padding:"10px 20px",
+             border: 0,
+             borderRadius: 10,
+        }
+        }>Confirm</button>
+    }
+    function Btn({title,big}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
+        //오브젝트이니까 {오브젝트 안에 있는 props를 꺼낸다.}
+        //console.log(props)//부모로 부터 전달받는 데이터 
+        console.log(big)
+        return <button style={{
+            backgroundColor:"tomato",
+             color:'white',
+             padding:"10px 20px",
+             border: 0,
+             borderRadius: 10,
+             fontSize: big ? 18 : 16
+        }}>
+         {title}
+        </button>
+    }
+
+    function App() {//<Btn>은 내가만든 컴포넌트여서 
+        //onClick함수를 넣어도 단지 props일 뿐이지 
+        //이벤트 리스너를 등록한것이 아니다.
+       //html태그 에서 onClick은 이벤트를 등록한것이다.
+        return (
+            <div>
+                <Btn title='Save Changes' big='true'/>
+                <Btn title='Continue'/>
+            </div>
+        );
+    }
+    const div = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+
+
+</script>
+
+</html>
