@@ -28,12 +28,12 @@
         }
         }>Confirm</button>
     }
-    function Btn({title,big,onClick}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
+    function Btn({title,big,changeValue}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
         //오브젝트이니까 {오브젝트 안에 있는 props를 꺼낸다.}
         //console.log(props)//부모로 부터 전달받는 데이터 
         console.log(big)
         return <button 
-        onClick={onClick}
+        onClick={changeValue}
         style={{
             backgroundColor:"tomato",
              color:'white',
@@ -56,7 +56,7 @@
        }
         return (
             <div>
-                <Btn title={value} onClick={changeValue}/>
+                <Btn title={value} changeValue={changeValue}/>
                 <Btn title='Continue'/>
             </div>
         );
