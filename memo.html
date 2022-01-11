@@ -7,6 +7,7 @@
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src ="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script type="text/babel">
     function SaveBtn(){
         return <button style={{
@@ -28,11 +29,11 @@
         }
         }>Confirm</button>
     }
-    function Btn({title,big,changeValue}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
+    function Btn({title,big,changeValue,fontSize}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
         //오브젝트이니까 {오브젝트 안에 있는 props를 꺼낸다.}
         //console.log(props)//부모로 부터 전달받는 데이터 
         console.log(big)
-        console.log(text,"was rendered")
+        console.log(title,"was rendered")
         return <button 
         onClick={changeValue}
         style={{
@@ -41,10 +42,14 @@
              padding:"10px 20px",
              border: 0,
              borderRadius: 10,
-             fontSize: 16
+             fontSize,
         }}>
          {title}
         </button>
+    }
+    Btn.propTypes={
+        title:PropTypes=PropTypes.string.isRequired,//.isRequired 꼭 전달 하고 싶은 prop임을 표시
+        fontSize: PropTypes.number,//prop이름: , PropTypes.타입 
     }
 
     function App() {//<Btn>은 내가만든 컴포넌트여서 
@@ -57,10 +62,10 @@
         //이때 사용하는것이 memorize이다. props가 바뀌지 않으면 이컴포넌트를 다시 그리지 않도록한다.
            setValue("Revert Changes")
        }
-        return (
+        return (//위에꺼는 정상적인 타입으로 prop을 전달함 두번째는 비정상적인 타입으로 prop을 연결함
             <div>
-                <MemorizedBtn title={value} changeValue={changeValue}/>
-                <MemorizedBtn title='Continue'/>
+                <MemorizedBtn title={value} changeValue={changeValue} fontSize={18}/>
+                <MemorizedBtn title={14} fontSize={'continue'}/>
             </div>
         );
     }
