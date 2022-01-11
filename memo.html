@@ -29,7 +29,7 @@
         }
         }>Confirm</button>
     }
-    function Btn({title,big,changeValue,fontSize}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다.
+    function Btn({title,big,changeValue,fontSize=16}){//컴포넌트의 인자는 props 단한개이다. 부모로 부터 받는 오브젝트이다. default값을 설정할 수 있다.
         //오브젝트이니까 {오브젝트 안에 있는 props를 꺼낸다.}
         //console.log(props)//부모로 부터 전달받는 데이터 
         console.log(big)
@@ -49,7 +49,7 @@
     }
     Btn.propTypes={
         title:PropTypes=PropTypes.string.isRequired,//.isRequired 꼭 전달 하고 싶은 prop임을 표시
-        fontSize: PropTypes.number,//prop이름: , PropTypes.타입 
+        fontSize: PropTypes.number,//prop이름: PropTypes.타입 , 필수 prop이 아니다.
     }
 
     function App() {//<Btn>은 내가만든 컴포넌트여서 
@@ -65,8 +65,8 @@
         return (//위에꺼는 정상적인 타입으로 prop을 전달함 두번째는 비정상적인 타입으로 prop을 연결함
             <div>
                 <MemorizedBtn title={value} changeValue={changeValue} fontSize={18}/>
-                <MemorizedBtn title={14} fontSize={'continue'}/>
-            </div>
+                <MemorizedBtn title={14} />
+            </div>//두번째꺼는 타입에러가 나타날 것이다. title이 없다면 필수라서 에러가 날것이다. fontSize가 없어도 Btn에서 설정한 기본값으로 설정이 된다.
         );
     }
     const div = document.getElementById("root");
